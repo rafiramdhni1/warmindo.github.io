@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warmindo Digital - 35 Menu</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        
+        nav {
+            position: fixed; top: 0; width: 100%; background: #ffffff;
+            padding: 12px; display: flex; justify-content: center; gap: 10px; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav a { text-decoration: none; color: #e74c3c; font-weight: bold; font-size: 0.75rem; border: 1px solid #e74c3c; padding: 5px 10px; border-radius: 20px; }
+
+        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 80px 15px; text-align: center; }
+
+        /* Halaman 1: Logo */
+        #home { background: #f1c40f; justify-content: center; }
+        .logo-circle {
+            width: 140px; height: 140px; background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 5px solid #e74c3c; font-size: 1.1rem; color: #e74c3c; font-weight: bold; margin-bottom: 20px;
+        }
+
+        /* Halaman 2: Meja */
+        #meja { background: #f9f9f9; justify-content: center; }
+        .meja-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 300px; }
+        .meja-btn {
+            padding: 20px; background: white; border: 2px solid #ddd;
+            border-radius: 10px; font-weight: bold; cursor: pointer;
+        }
+        .meja-btn.active { background: #e74c3c; color: white; border-color: #e74c3c; }
+
+        /* Halaman 3: Menu */
+        #menu { background: #ffffff; display: block; }
+        .category-title { background: #e74c3c; color: white; padding: 10px; margin: 20px 0 10px 0; border-radius: 8px; width: 100%; }
+        .menu-list { text-align: left; width: 100%; max-width: 500px; margin: 0 auto; }
+        .menu-item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 12px; border-bottom: 1px solid #eee; background: #fff;
+        }
+        .menu-info h4 { font-size: 0.9rem; color: #333; }
+        .menu-info span { color: #e74c3c; font-weight: bold; font-size: 0.85rem; }
+        .btn-add { background: #27ae60; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
+
+        /* Halaman 4: Bayar */
+        #bayar { background: #e74c3c; color: white; }
+        .card { background: white; color: #333; padding: 20px; border-radius: 15px; width: 100%; max-width: 350px; text-align: center; }
+        #item-summary { font-size: 0.85rem; text-align: left; max-height: 150px; overflow-y: auto; margin: 10px 0; border: 1px dashed #ccc; padding: 10px; }
+        .total-price { font-size: 1.8rem; color: #e74c3c; font-weight: bold; margin: 10px 0; }
+        
+        .btn-wa { background: #25d366; color: white; padding: 15px; border-radius: 10px; width: 100%; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#home">HOME</a>
+    <a href="#meja">MEJA</a>
+    <a href="#menu">MENU</a>
+    <a href="#bayar">BAYAR</a>
+</nav>
+
+<section id="home">
+    <div class="logo-circle">WARMINDO</div>
+    <h1>Warmindo Digital</h1>
+    <p>Makan Nikmat, Pesan Cepat!</p>
+    <a href="#meja" style="margin-top:20px; padding:12px 30px; background:#e74c3c; color:white; text-decoration:none; border-radius:25px; font-weight:bold;">Mulai Pesan</a>
+</section>
+
+<section id="meja">
+    <h2 style="margin-bottom:20px;">Pilih Meja Kamu</h2>
+    <div class="meja-grid" id="mejaArea">
+        <script>
+            for(let i=1; i<=9; i++) {
+                document.write(`<div class="meja-btn" onclick="pilihMeja(${i}, this)">${i}</div>`);
+            }
+        </script>
+    </div>
+    <a href="#menu" style="margin-top:30px; color:#e74c3c; font-weight:bold; text-decoration:none;">Lanjut Lihat Menu →</a>
+</section>
+
+<section id="menu">
+    <h2 style="color:#e74c3c;">Buku Menu</h2>
+    
+    <div class="menu-list">
+        <div class="category-title">🍜 Menu Indomie Variasi</div>
+        <div id="cat-indomie"></div>
+
+        <div class="category-title">🌶️ Menu Pedas & Kreatif</div>
+        <div id="cat-pedas"></div>
+
+        <div class="category-title">🥤 Minuman Pendamping</div>
+        <div id="cat-minum"></div>
+
+        <div class="category-title">🍚 Menu Nasi</div>
+        <div id="cat-nasi"></div>
+    </div>
+    
+    <a href="#bayar" style="display:block; margin:30px auto; width:200px; padding:15px; background:#27ae60; color:white; text-decoration:none; border-radius:10px; font-weight:bold;">Lihat Keranjang</a>
+</section>
+
+<section id="bayar">
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; font-weight:bold;">
+            <span>Pesanan Saya</span>
+            <span id="res-meja" style="color:#e74c3c;">Meja: ?</span>
+        </div>
+        <div id="item-summary">Keranjang masih kosong...</div>
+        <div class="total-price" id="res-total">Rp 0</div>
+        
+        <div style="margin-bottom:15px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PEMBAYARAN-WARMINDO" alt="QRIS" style="border:5px solid #eee; border-radius:10px;">
+            <p style="font-size:0.7rem; color:#888;">Silahkan scan QRIS untuk membayar</p>
+        </div>
+
+        <button class="btn-wa" onclick="kirimWhatsApp()">Konfirmasi ke WhatsApp</button>
+        <button onclick="location.reload()" style="background:none; border:none; color:#888; margin-top:15px; cursor:pointer;">Hapus Semua</button>
+    </div>
+</section>
+
+<script>
+    let keranjang = [];
+    let totalHarga = 0;
+    let noMeja = "-";
+
+    const dataMenu = {
+        indomie: [
+            ["Indomie Goreng Original", 10000], ["Indomie Rebus Original", 10000], ["Indomie Goreng + Telur Ceplok", 15000],
+            ["Indomie Rebus + Telur Dadar", 15000], ["Indomie Goreng + Kornet", 18000], ["Indomie Goreng + Sosis", 15000],
+            ["Indomie Rebus + Bakso", 18000], ["Indomie Goreng + Keju", 15000], ["Indomie Goreng + Telur 1/2 Matang", 15000],
+            ["Indomie Rebus + Ayam Suwir", 18000]
+        ],
+        pedas: [
+            ["Indomie Seblak", 20000], ["Indomie Level Pedas", 12000], ["Indomie Rica-Rica", 18000],
+            ["Indomie Sambal Matah", 15000], ["Indomie Goreng + Ayam Geprek", 25000], ["Indomie Kuah Kari Pedas", 15000],
+            ["Indomie Goreng + Ceker Pedas", 18000], ["Indomie Goreng + Usus Pedas", 15000], ["Indomie Goreng + Kulit Crispy", 18000],
+            ["Indomie Goreng + Nugget", 18000]
+        ],
+        minum: [
+            ["Es Teh Manis", 5000], ["Teh Tawar Hangat", 3000], ["Kopi Hitam", 5000], ["Kopi Susu", 7000],
+            ["Milo Dingin", 10000], ["Susu Jahe", 8000], ["Es Jeruk", 8000], ["Es Kopi Gula Aren", 12000],
+            ["Teh Tarik", 10000], ["Es Cappuccino", 10000]
+        ],
+        nasi: [
+            ["Nasi Goreng Telur", 15000], ["Nasi Goreng Ayam", 20000], ["Nasi Goreng Kornet", 22000],
+            ["Nasi Goreng Sosis", 20000], ["Nasi + Ayam Geprek", 20000]
+        ]
+    };
+
+    // Fungsi Render Menu
+    function render() {
+        for (let cat in dataMenu) {
+            let container = document.getElementById('cat-' + cat);
+            dataMenu[cat].forEach(item => {
+                container.innerHTML += `
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>${item[0]}</h4>
+                            <span>Rp ${item[1].toLocaleString('id-ID')}</span>
+                        </div>
+                        <button class="btn-add" onclick="tambah('${item[0]}', ${item[1]})">+ Tambah</button>
+                    </div>
+                `;
+            });
+        }
+    }
+
+    function pilihMeja(n, el) {
+        noMeja = n;
+        document.querySelectorAll('.meja-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('res-meja').innerText = "Meja: " + n;
+    }
+
+    function tambah(nama, harga) {
+        keranjang.push(nama);
+        totalHarga += harga;
+        document.getElementById('item-summary').innerText = keranjang.join(", ");
+        document.getElementById('res-total').innerText = "Rp " + totalHarga.toLocaleString('id-ID');
+    }
+
+    function kirimWhatsApp() {
+        if(noMeja === "-") { alert("Pilih meja dulu!"); return; }
+        if(keranjang.length === 0) { alert("Keranjang kosong!"); return; }
+        
+        let pesan = `PESANAN WARMINDO%0A--------------------%0AMeja: ${noMeja}%0AOrder: ${keranjang.join(", ")}%0A--------------------%0ATotal: Rp ${totalHarga.toLocaleString('id-ID')}`;
+        window.open(`https://wa.me/628123456789?text=${pesan}`, '_blank'); // Ganti nomor WA kamu
+    }
+
+    render();
+</script>
+
+</body>
+</html>

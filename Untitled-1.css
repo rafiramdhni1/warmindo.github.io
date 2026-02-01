@@ -1,0 +1,57 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+html { scroll-behavior: smooth; }
+
+nav {
+    position: fixed; top: 0; width: 100%; background: #ffffff;
+    padding: 12px; display: flex; justify-content: center; gap: 10px; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+nav a { 
+    text-decoration: none; color: #e74c3c; font-weight: bold; font-size: 0.75rem; 
+    border: 1px solid #e74c3c; padding: 5px 12px; border-radius: 20px; 
+}
+
+section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 80px 15px; text-align: center; }
+
+/* Home */
+#home { background: #f1c40f; justify-content: center; }
+.logo-circle {
+    width: 140px; height: 140px; background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 5px solid #e74c3c; font-size: 1.1rem; color: #e74c3c; font-weight: bold; margin-bottom: 20px;
+}
+.btn-start {
+    margin-top:20px; padding:12px 30px; background:#e74c3c; color:white; 
+    text-decoration:none; border-radius:25px; font-weight:bold;
+}
+
+/* Meja */
+#meja { background: #f9f9f9; justify-content: center; }
+.meja-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 300px; }
+.meja-btn {
+    padding: 20px; background: white; border: 2px solid #ddd;
+    border-radius: 10px; font-weight: bold; cursor: pointer;
+}
+.meja-btn.active { background: #e74c3c; color: white; border-color: #e74c3c; }
+.link-next { margin-top:30px; color:#e74c3c; font-weight:bold; text-decoration:none; }
+
+/* Menu */
+#menu { background: #ffffff; display: block; }
+.category-title { background: #e74c3c; color: white; padding: 10px; margin: 20px 0 10px 0; border-radius: 8px; }
+.menu-list { text-align: left; width: 100%; max-width: 500px; margin: 0 auto; }
+.menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
+.menu-info h4 { font-size: 0.9rem; color: #333; }
+.menu-info span { color: #e74c3c; font-weight: bold; font-size: 0.85rem; }
+.btn-add { background: #27ae60; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; }
+.btn-cart { display:block; margin:30px auto; width:200px; padding:15px; background:#27ae60; color:white; text-decoration:none; border-radius:10px; font-weight:bold; text-align:center; }
+
+/* Pembayaran */
+#bayar { background: #e74c3c; color: white; }
+.card { background: white; color: #333; padding: 20px; border-radius: 15px; width: 100%; max-width: 350px; }
+.card-header { display:flex; justify-content:space-between; font-weight:bold; margin-bottom: 10px; }
+#res-meja { color:#e74c3c; }
+#item-summary { font-size: 0.85rem; text-align: left; max-height: 120px; overflow-y: auto; margin: 10px 0; border: 1px dashed #ccc; padding: 10px; }
+.total-price { font-size: 1.8rem; color: #e74c3c; font-weight: bold; margin: 10px 0; }
+.qr-area img { border:5px solid #eee; border-radius:10px; width: 150px; }
+.qr-area p { font-size:0.7rem; color:#888; margin-top: 5px; }
+.btn-wa { background: #25d366; color: white; padding: 15px; border-radius: 10px; width: 100%; border: none; font-weight: bold; margin-top: 15px; cursor: pointer; }
+.btn-reset { background:none; border:none; color:#888; margin-top:15px; cursor:pointer; width: 100%; }
